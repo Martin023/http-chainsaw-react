@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import axios from 'axios'
 class PostHttp extends Component {
     constructor(props) {
       super(props)
@@ -13,11 +13,15 @@ class PostHttp extends Component {
     }
     changeHandler = (e) => {
         this.setState({[e.target.name]: e.target.value})
+        
     }
     onSubmitListener = (e) => {
         e.preventDefault()
         console.log(this.state)
-        post('https://jsonplaceholder.typicode.com/posts', this.state)
+        axios.post('https://jsonplaceholder.typicode.com/posts', this.state)
+        .then(response => {
+            console.log(response)
+        })
     }
   render() {
         const {userId, title, body} = this.state
